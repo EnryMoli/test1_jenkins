@@ -25,8 +25,9 @@ if [ $? -eq 0 ]; then
   # cd /home/jenkins/workspace/task1
   git add main
   counter=$((counter + 1))
+  git commit -m "Aggiunto eseguibile compilato Nr. $counter" # su develop
   git checkout master
-  git commit -m "Aggiunto eseguibile compilato Nr. $counter"
+  git commit -m "Aggiunto eseguibile compilato Nr. $counter" # su master
   git tag -a v$counter -m "Versione $counter"
   write_counter "$counter"
   git push -u origin master
