@@ -1,0 +1,38 @@
+#!/bin/bash
+
+set -xeuo pipefail
+
+CONFIG_FILE="/home/jenkins/agent/config.count"
+
+read_counter() {
+  if [ -f "$CONFIG_FILE" ]; then
+    read counter < "$CONFIG_FILE"
+  else
+    counter=0
+  fi
+  echo $counter
+}
+
+write_counter() {
+  echo $1 > "$CONFIG_FILE"
+}
+
+gcc main.c -o main
+
+if [ $? -eq 0 ]; then
+  echo "compilazione OK"
+  counter=$(read_counter)
+  # cd /home/jenkins/workspace/task1
+  git add main
+  counter=$((counter + 1))
+  git checkout master
+  git commit -m "Aggiunto eseguibile compilato Nr. $counter"
+  write_counter "$counter"
+  git push -u origin master
+  git checkout develop
+  git push -u origin develop
+  exit 0
+else
+  echo "Errore durante la compilazione"
+  exit 1
+fi
