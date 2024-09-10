@@ -30,7 +30,9 @@ if [ $? -eq 0 ]; then
   git push -u -f origin develop
   counter=$((counter + 1))
   write_counter "$counter"
-  git checkout master
+  git branch master_local_tmp
+  git add master_local_tmp/main2
+  git checkout master_local_tmp
   git commit -m "Aggiunto eseguibile compilato Nr. $counter"
   git push -u -f origin master
   exit 0
