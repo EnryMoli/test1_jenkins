@@ -2,7 +2,7 @@
 
 void main (void)
 {
-    printf("test abc=8\n");
+    printf("test abc=9\n");
     fflush(stdout);
     while (1)
     {
