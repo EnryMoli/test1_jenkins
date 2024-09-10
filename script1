@@ -17,22 +17,18 @@ write_counter() {
   echo $1 > "$CONFIG_FILE"
 }
 
-gcc main.c -o main1
+gcc main.c -o main2
 
 if [ $? -eq 0 ]; then
   echo "compilazione OK"
   counter=$(read_counter)
   # cd /home/jenkins/workspace/task1
   git checkout develop
-  git add main1
+  git add main2
   git commit -m "Aggiunto eseguibile compilato Nr. $counter" # su develop
-  # git tag -a v$counter -m "Versione $counter"  
   git push -u -f origin develop
-  # git push origin --tags
   counter=$((counter + 1))
   write_counter "$counter"
-  git push -f origin master
-  # git push origin --tags
   exit 0
 else
   echo "Errore durante la compilazione"
