@@ -31,7 +31,6 @@ if [ $? -eq 0 ]; then
   counter=$((counter + 1))
   write_counter "$counter"
   git checkout master
-  git branch -D master || true
   git commit -m "Aggiunto eseguibile compilato Nr. $counter"
   git push -u -f origin master
   exit 0
