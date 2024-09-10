@@ -17,13 +17,14 @@ write_counter() {
   echo $1 > "$CONFIG_FILE"
 }
 
-gcc main.c -o main
+gcc main.c -o main1
 
 if [ $? -eq 0 ]; then
   echo "compilazione OK"
   counter=$(read_counter)
   # cd /home/jenkins/workspace/task1
-  git add main
+  git add main1
+  git checkout master
   git commit -m "Aggiunto eseguibile compilato Nr. $counter" # su develop
   git tag -a v$counter -m "Versione $counter"
   counter=$((counter + 1))
