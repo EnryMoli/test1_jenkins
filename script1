@@ -24,14 +24,14 @@ if [ $? -eq 0 ]; then
   counter=$(read_counter)
   # cd /home/jenkins/workspace/task1
   git add main1
-  git commit -m "Aggiunto eseguibile compilato Nr. $counter" # su develop
+  git commit -m -f "Aggiunto eseguibile compilato Nr. $counter" # su develop
   # git tag -a v$counter -m "Versione $counter"
-  git checkout develop
-  git push origin develop
+  git checkout -f develop
+  git push -u -f origin develop
   # git push origin --tags
   counter=$((counter + 1))
   write_counter "$counter"
-  git push origin master
+  git push -f origin master
   # git push origin --tags
   exit 0
 else
