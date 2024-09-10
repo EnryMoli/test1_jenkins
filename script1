@@ -20,12 +20,13 @@ write_counter() {
 gcc main.c -o main2
 
 if [ $? -eq 0 ]; then
+
   echo "compilazione OK"
   counter=$(read_counter)
   # cd /home/jenkins/workspace/task1
   git checkout develop
   git add main2
-  git commit -m "Aggiunto eseguibile compilato Nr. $counter" -b develop # su develop
+  git commit -m "Aggiunto eseguibile compilato Nr. $counter" # su develop
   git push -u -f origin develop
   counter=$((counter + 1))
   write_counter "$counter"
@@ -34,6 +35,7 @@ if [ $? -eq 0 ]; then
   git commit -m "Aggiunto eseguibile compilato Nr. $counter"
   git push -u -f origin master
   exit 0
+
 else
   echo "Errore durante la compilazione"
   exit 1
