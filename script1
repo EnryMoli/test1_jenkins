@@ -26,6 +26,7 @@ if [ $? -eq 0 ]; then
   git add main
   counter=$((counter + 1))
   git commit -m "Aggiunto eseguibile compilato Nr. $counter" # su develop
+  git push -u origin develop
   git checkout master
   git commit -m "Aggiunto eseguibile compilato Nr. $counter" # su master
   git tag -a v$counter -m "Versione $counter"
