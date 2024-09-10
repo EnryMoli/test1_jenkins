@@ -23,7 +23,7 @@ if [ $? -eq 0 ]; then
   echo "compilazione OK"
   counter=$(read_counter)
   # cd /home/jenkins/workspace/task1
-  ### git checkout develop
+  git checkout develop
   git add main2
   git commit -m "Aggiunto eseguibile compilato Nr. $counter" -b develop # su develop
   git push -u -f origin develop
