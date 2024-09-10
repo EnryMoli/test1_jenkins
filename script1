@@ -20,6 +20,7 @@ write_counter() {
 gcc main.c -o main2
 
 if [ $? -eq 0 ]; then
+
   echo "compilazione OK"
   counter=$(read_counter)
   # cd /home/jenkins/workspace/task1
@@ -30,6 +31,7 @@ if [ $? -eq 0 ]; then
   counter=$((counter + 1))
   write_counter "$counter"
   exit 0
+  
 else
   echo "Errore durante la compilazione"
   exit 1
